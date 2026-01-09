@@ -1,2 +1,2 @@
 # hexeditorTest
-<p>just a basic hex editor</p>
+<p>Small C projects</p>
