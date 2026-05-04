@@ -86,6 +86,14 @@ void miniPrint(const char* format, ...){
 
 }
 
+void mySuperLogger(const char* format, ...){
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
+
+}
+
 int main(){
 
     printf("answer: %F\n", multiplyAll(3.0, 5.0, 0.0, 2.0));
@@ -96,7 +104,9 @@ int main(){
     int n = 10;
     int w = 50;
     double c = 25.15;
-    miniPrint("Result: %i apples weighing %ilb cost %f$", n, w, c);
+    miniPrint("Result: %i apples weighing %ilb cost %f$\n", n, w, c);
+
+    mySuperLogger("testing out vprint with %d variable argument.\n",1);
 
     return 0;
 }
