@@ -23,6 +23,7 @@ double multiplyAll(double first,...){
 }
 
 /**
+ * A simple logging system using variatic arguments
  * (severity, timestamp, module name, message)
  * the severity status has to be 1 or 0
  * 1 is info 
@@ -69,21 +70,17 @@ void miniPrint(const char* format, ...){
         if(prtStr[i] == '%' && prtStr[i + 1] == 'i'){
             val = std::to_string(va_arg(args, int));
             prtStr.replace(i,val.length(), val);
-            i++;
-            
         }
 
         if(prtStr[i] == '%' && prtStr[i + 1] == 'f'){
             val = std::to_string(va_arg(args, double));
             prtStr.replace(i,2, val);
-            i++;
         }
     }
 
     va_end(args);
     
     std::cout << prtStr;
-
 }
 
 void mySuperLogger(const char* format, ...){
@@ -91,7 +88,6 @@ void mySuperLogger(const char* format, ...){
     va_start(args, format);
     vprintf(format, args);
     va_end(args);
-
 }
 
 int main(){
