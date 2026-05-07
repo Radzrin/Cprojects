@@ -3,7 +3,7 @@
 
 
 /**
- * test template 
+ * sum 2 numbers of identical data types 
  *
 */
 template<typename T>
