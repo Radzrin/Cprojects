@@ -85,7 +85,6 @@ void shout(T first, args...arg){
 }
 
 
-
 int main(){
 
     std::cout << countInt(1, "abc", 23.43, 2) << "\n";
