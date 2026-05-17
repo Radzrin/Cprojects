@@ -2,30 +2,39 @@
 #include <iostream>
 #include <cstdint>
 #include <vector>
+#include <cmath>
 
 
 std::string string64(std::vector<std::string> in){
     std::string big128Int = "";
     std::vector<std::string> nv;
     int w = in.size() - 1;
+    long long int sum = 0;
     int remainder = 0;
-    int sum = 1;
 
     if(in.size() == 1){
         return in.at(0);
     }
 
+    int b1;
+    int b2;
+    int b3;
+    int b4;
+
     while(in.size() > 0){
-        for (int i = in.at(w).length() - 1; i >= 0; i--)
-        {
-            for (int j = in.at(w - 1).length() - 1; j >= 0; j--)
-            {
-                if(in.at(w)[i]- '0' == 0 || in.at(w - 1)[j]- '0' == 0){
-                    sum *=10;
-                }else{
-                    sum +=  (in.at(w)[i]- '0') * (in.at(w - 1)[j] - '0') + remainder * pow(10,i);
-                    remainder = sum % 9;
-                }
+        for (int i = in.at(w).length() - 1; i >= 0; i--){
+            for (int j = in.at(w - 1).length() - 1; j >= 0; j--){
+                    b1 = (in.at(w)[i]- '0');
+                    b2 = (in.at(w - 1)[j]- '0');
+                    b3 = in.at(w - 1).length();
+                    b4 = j;
+
+                    if(in.at(w - 1).length()  > in.at(w).length() ){
+                        sum +=  ((in.at(w)[i]- '0') * (in.at(w - 1)[j] - '0')) * (p) * pow(10, in.at(w).length() - 1 - i));
+                    }else{
+                        sum +=  ((in.at(w)[i]- '0') * (in.at(w - 1)[j] - '0')) * (pow(10, in.at(w).length() - 1 - i) * pow(10, in.at(w - 1).length() - 1 - j));
+                    }
+                    
                 
                 
                 
@@ -34,7 +43,7 @@ std::string string64(std::vector<std::string> in){
         in.pop_back();
         in.pop_back();
 
-        big128Int += std::to_string(sum);
+        big128Int = std::to_string(sum);
         nv.push_back(big128Int);
         
         if(in.size() == 1){
@@ -42,8 +51,8 @@ std::string string64(std::vector<std::string> in){
             in.pop_back();
         }
 
-        w = in.size();
-        
+        w = in.size() - 1;
+        sum = 0;
     }
 
     
@@ -53,7 +62,6 @@ std::string string64(std::vector<std::string> in){
 
 
 std::string factorial(int factorial){
-    std::string num;
     std::vector<std::string> nv;
     int64_t ans = 1;
 
@@ -80,10 +88,6 @@ std::string factorial(int factorial){
 std::string decomp(int n) {
   std::string tmp;
 
-  while(n > 1){
-        
-  }
-
   return tmp;
 }
 
@@ -104,6 +108,6 @@ int main(){
     std::cout << ab; */
    // std::cout << cd;
 
-   std::cout << factorial(8);
+   std::cout << factorial(20);
     return 0;
 }
