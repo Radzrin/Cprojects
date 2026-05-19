@@ -16,28 +16,15 @@ std::string string64(std::vector<std::string> in){
         return in.at(0);
     }
 
-    int b1;
-    int b2;
-    int b3;
-    int b4;
-
     while(in.size() > 0){
         for (int i = in.at(w).length() - 1; i >= 0; i--){
             for (int j = in.at(w - 1).length() - 1; j >= 0; j--){
-                    b1 = (in.at(w)[i]- '0');
-                    b2 = (in.at(w - 1)[j]- '0');
-                    b3 = in.at(w - 1).length();
-                    b4 = j;
 
                     if(in.at(w - 1).length()  > in.at(w).length() ){
                         sum +=  ((in.at(w)[i]- '0') * (in.at(w - 1)[j] - '0')) * (p) * pow(10, in.at(w).length() - 1 - i));
                     }else{
                         sum +=  ((in.at(w)[i]- '0') * (in.at(w - 1)[j] - '0')) * (pow(10, in.at(w).length() - 1 - i) * pow(10, in.at(w - 1).length() - 1 - j));
                     }
-                    
-                
-                
-                
             }
         }
         in.pop_back();
@@ -108,6 +95,6 @@ int main(){
     std::cout << ab; */
    // std::cout << cd;
 
-   std::cout << factorial(20);
+   std::cout << factorial(300);
     return 0;
 }
