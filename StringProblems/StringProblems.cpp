@@ -13,11 +13,11 @@ std::string reverseString(std::string str){
  * reverses every word a string
  * ex: "Hello World!" becomes "World! Hello"
  */
-std::string backwardsString(std::string str){
+std::string backwardsString(const std::string& str){
     std::string temp = "";
-    int lengthofW {str.size() - 1};
+    int lengthofW {str.length() - 1};
 
-    for(int i = str.size() - 1; i >= 0; i--){
+    for(int i = str.length() - 1; i >= 0; i--){
         if(str[i] == ' '){
             temp += str.substr(i, lengthofW - i);
             lengthofW = i;
@@ -30,10 +30,20 @@ std::string backwardsString(std::string str){
 }
 
 
+bool isValidIPv4(const std::string& ip){
+
+    
+
+    return true;
+}
+
+
+
+
 int main(){
 
     
     std::cout << reverseString("this is a string to be reversed") << "\n";
-    std::cout << backwardsString("this is a string to be reversed") << "\n";
+    std::cout << backwardsString(" this is a string to be reversed") << "\n";
     return 0;
 }

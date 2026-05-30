@@ -166,6 +166,6 @@ int main(){
     std::cout << ab; */
    // std::cout << cd;
 
-   std::cout << factorial(10);
+   std::cout << factorial(4);
     return 0;
 }
