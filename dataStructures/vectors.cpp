@@ -6,18 +6,15 @@
 /**
  * custom vector data structure including its functions
  */
-
 template<typename T>
 class Vectors
 {
 private:
     int nmbOfElements;
     int capacity;
-public:
     T* vecArr;
+public:
     
-    
-
     Vectors()
     {
         nmbOfElements = 0;
@@ -31,10 +28,10 @@ public:
         }
 
         /**
-         * insert value into the vector
+         * push_back value into the vector
          */
         template<typename Ty>
-        void insert(Ty val){
+        void push_back(const Ty &val){
 
             T*  tempArr = new T[nmbOfElements + 1];
 
@@ -62,9 +59,16 @@ public:
         /**
          * remove element from index
          */
-        void remove(int index){
-            
-            T*  tempArr = new T[nmbOfElements - 1];
+        void erase(int index){
+            try{
+                if(nmbOfElements == 0){
+                    throw("empty vector");
+                }
+                if(index < 0 || index > nmbOfElements - 1){
+                    throw("index out of bounds exception");
+                }
+
+              T*  tempArr = new T[nmbOfElements - 1];
             
 
             for(int i = 0; i < nmbOfElements; ++i){
@@ -92,6 +96,11 @@ public:
             }
 
             delete tempArr;
+
+            }catch(const std::string e){
+                std::cerr << e << "\n";
+            } 
+           
         }   
 
 
@@ -99,13 +108,13 @@ public:
          * removes an element at the end of the vector
          */
         void pop_back(){
-            remove(nmbOfElements - 1);
+            erase(nmbOfElements - 1);
         }
         
         /**
          * returns the index of a value if its in the vector
          */
-        int find(T val){
+        int find(const T &val){
             for(int  i = 0; i < nmbOfElements; ++i){
                 if(vecArr[i] == val){
                     return i;
@@ -168,10 +177,45 @@ public:
         }
 
         /**
+         *  empties the vector
+         */
+        void clear(){
+            nmbOfElements = 0;
+            delete(vecArr);
+            vecArr = new T[nmbOfElements];
+        }
+
+        /**
          * checks whether or not the vector is empty
          */
         bool empty(){
             return nmbOfElements > 0;
+        }
+
+        /**
+         * swap elements
+         */
+        void swap(int index1, int index2){
+            try
+            {
+
+                if(index1 > nmbOfElements - 1 || index2 > nmbOfElements - 1 || index1 < 0 || index2 < 0){
+                    throw("index out of bounds exception");
+                }
+
+                if(index1 == index2){
+                    return;
+                }
+
+                T tempValue = vecArr[index1];
+                vecArr[index1] = vecArr[index1];
+                vecArr[index2] = tempValue;
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+            }
+            
         }
 
         /**
@@ -203,14 +247,14 @@ public:
 
 int main(){
 
+    //TODO add exceptions for remove
     Vectors<int> v;
 
-    v.insert(12);
-    v.insert(100);
-    v.insert(99);
-    v.insert(43);
-    v.insert(23);
-
+    v.push_back(12);
+    v.push_back(100);
+    v.push_back(99);
+    v.push_back(43);
+    v.push_back(23);
 
     //v.getvecArr();
 
@@ -220,7 +264,7 @@ int main(){
     std::cout << v.toString() << "\n";
 
 
-    v.remove(1);
+    v.erase(1);
     v.pop_back();
     
     std::cout << v.toString() << "\n";
@@ -228,8 +272,8 @@ int main(){
 
     Vectors<double> v1;
     std::cout << v1.empty();
-    v1.insert(12.5);
-    v1.insert(134.45);
+    v1.push_back(12.5);
+    v1.push_back(134.45);
     //std::cout << v1.toString() << "\n";
     return 0;
 }
