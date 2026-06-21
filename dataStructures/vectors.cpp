@@ -24,7 +24,7 @@ public:
 
     ~Vectors()
         {
-           delete vecArr;
+           delete[] vecArr;
         }
 
         /**
@@ -53,7 +53,7 @@ public:
                 vecArr[i] = tempArr[i];
             }
 
-            delete tempArr;
+            delete[] tempArr;
         } 
 
         /**
@@ -95,7 +95,7 @@ public:
                 vecArr[i] = tempArr[i];
             }
 
-            delete tempArr;
+            delete[] tempArr;
 
             }catch(const std::string e){
                 std::cerr << e << "\n";
@@ -181,8 +181,7 @@ public:
          */
         void clear(){
             nmbOfElements = 0;
-            delete(vecArr);
-            vecArr = new T[nmbOfElements];
+            delete[] vecArr;
         }
 
         /**
@@ -255,7 +254,6 @@ int main(){
     v.push_back(99);
     v.push_back(43);
     v.push_back(23);
-
     //v.getvecArr();
 
     std::cout <<  v.at(2)<< "\n";
